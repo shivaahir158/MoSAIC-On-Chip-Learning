@@ -1,0 +1,33 @@
+{
+  "gpu": {
+    "name": "NVIDIA RTX 500 Ada Generation Laptop GPU",
+    "sm_count": 16,
+    "shared_mem_per_block": 49152,
+    "regs_per_sm": 65536,
+    "global_mem_GB": 3.7
+  },
+  "tile_size": 64,
+  "num_streams": 2,
+  "baseline_ms_per_iter": 1.0033211496192962,
+  "dag_tasks": 444,
+  "dag_edges": 1722,
+  "motif_vector": [
+    9,
+    18,
+    153,
+    0
+  ],
+  "total_work_us": 9482.640805339814,
+  "cpsat_makespan_us": 4688,
+  "heft_makespan_us": 4916.518567740441,
+  "mosaic_makespan_us": 4911.976967989922,
+  "mosaic_gap_pct": 4.777665699443725,
+  "learned_theta": [
+    1.5179384409865349,
+    -0.7728252145375718,
+    -0.23681860674000887,
+    -0.48536354782910346,
+    0.08187413938632256
+  ],
+  "power_w": 14.42
+}

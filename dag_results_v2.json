@@ -1,0 +1,199 @@
+{
+  "gpu_spec": {
+    "name": "NVIDIA RTX 500 Ada Generation Laptop GPU",
+    "sm_count": 16,
+    "shared_mem_per_block": 49152,
+    "shared_mem_per_sm": 102400,
+    "regs_per_sm": 65536,
+    "l2_cache_bytes": 16777216,
+    "global_mem_GB": 3.7,
+    "bandwidth_gbps": 128.0
+  },
+  "tile_size_comparison": [
+    {
+      "tile_size": 32,
+      "total_tasks": 3301,
+      "depth": 13,
+      "critical_path_us": 320.6,
+      "total_work_us": 59840.4,
+      "max_parallelism": 1040,
+      "avg_parallelism": 186.68,
+      "avg_occupancy": 87.4,
+      "shared_mem_violations": 0,
+      "global_data_movement_KB": 34511.8
+    },
+    {
+      "tile_size": 64,
+      "total_tasks": 444,
+      "depth": 12,
+      "critical_path_us": 281.9,
+      "total_work_us": 11012.0,
+      "max_parallelism": 128,
+      "avg_parallelism": 39.07,
+      "avg_occupancy": 68.2,
+      "shared_mem_violations": 0,
+      "global_data_movement_KB": 18223.5
+    },
+    {
+      "tile_size": 128,
+      "total_tasks": 128,
+      "depth": 12,
+      "critical_path_us": 227.0,
+      "total_work_us": 2093.0,
+      "max_parallelism": 32,
+      "avg_parallelism": 9.22,
+      "avg_occupancy": 50.1,
+      "shared_mem_violations": 64,
+      "global_data_movement_KB": 14097.5
+    },
+    {
+      "tile_size": 256,
+      "total_tasks": 42,
+      "depth": 12,
+      "critical_path_us": 177.2,
+      "total_work_us": 629.4,
+      "max_parallelism": 8,
+      "avg_parallelism": 3.55,
+      "avg_occupancy": 74.0,
+      "shared_mem_violations": 20,
+      "global_data_movement_KB": 12034.5
+    }
+  ],
+  "scaling_results": [
+    {
+      "scale": "1X",
+      "batch_size": 64,
+      "dims": "1024->512->10",
+      "baseline_ms_per_iter": 0.833,
+      "baseline_power": {
+        "avg_power_w": 11.97,
+        "peak_power_w": 11.97,
+        "min_power_w": 11.97,
+        "samples": 1,
+        "duration_s": 0.05,
+        "energy_mj": 598.5
+      },
+      "peak_memory_MB": 20.7,
+      "dag_tasks": 128,
+      "dag_depth": 12,
+      "dag_work_us": 2031.0,
+      "dag_critical_path_us": 193.4,
+      "dag_max_parallelism": 32,
+      "dag_avg_parallelism": 10.5,
+      "dag_avg_occupancy_pct": 50.1,
+      "global_mem_read_KB": 8151.8,
+      "global_mem_write_KB": 5945.8,
+      "shared_mem_total_KB": 5436.0,
+      "register_total_KB": 7460.0,
+      "tiled_serial_ms": 5.809,
+      "tiled_power": {
+        "avg_power_w": 13.07,
+        "peak_power_w": 13.07,
+        "min_power_w": 13.07,
+        "samples": 1,
+        "duration_s": 0.05,
+        "energy_mj": 653.5
+      },
+      "type_counts": {
+        "input": 1,
+        "matmul_tile": 76,
+        "accumulate": 5,
+        "activation": 4,
+        "loss": 1,
+        "grad_loss": 1,
+        "grad_activation": 4,
+        "weight_update": 36
+      }
+    },
+    {
+      "scale": "2X",
+      "batch_size": 128,
+      "dims": "2048->1024->10",
+      "baseline_ms_per_iter": 1.287,
+      "baseline_power": {
+        "avg_power_w": 13.13,
+        "peak_power_w": 13.13,
+        "min_power_w": 13.13,
+        "samples": 1,
+        "duration_s": 0.05,
+        "energy_mj": 656.5
+      },
+      "peak_memory_MB": 34.0,
+      "dag_tasks": 444,
+      "dag_depth": 12,
+      "dag_work_us": 14224.7,
+      "dag_critical_path_us": 492.4,
+      "dag_max_parallelism": 128,
+      "dag_avg_parallelism": 28.89,
+      "dag_avg_occupancy_pct": 87.9,
+      "global_mem_read_KB": 44759.5,
+      "global_mem_write_KB": 27783.5,
+      "shared_mem_total_KB": 33952.0,
+      "register_total_KB": 37456.0,
+      "tiled_serial_ms": 60.329,
+      "tiled_power": {
+        "avg_power_w": 14.23,
+        "peak_power_w": 14.23,
+        "min_power_w": 14.23,
+        "samples": 1,
+        "duration_s": 0.05,
+        "energy_mj": 711.5
+      },
+      "type_counts": {
+        "input": 1,
+        "matmul_tile": 280,
+        "accumulate": 9,
+        "activation": 8,
+        "loss": 1,
+        "grad_loss": 1,
+        "grad_activation": 8,
+        "weight_update": 136
+      }
+    },
+    {
+      "scale": "3X",
+      "batch_size": 192,
+      "dims": "3072->1536->10",
+      "baseline_ms_per_iter": 1.328,
+      "baseline_power": {
+        "avg_power_w": 12.97,
+        "peak_power_w": 12.97,
+        "min_power_w": 12.97,
+        "samples": 1,
+        "duration_s": 0.05,
+        "energy_mj": 648.5
+      },
+      "peak_memory_MB": 56.0,
+      "dag_tasks": 1901,
+      "dag_depth": 13,
+      "dag_work_us": 38377.0,
+      "dag_critical_path_us": 472.9,
+      "dag_max_parallelism": 588,
+      "dag_avg_parallelism": 81.15,
+      "dag_avg_occupancy_pct": 57.6,
+      "global_mem_read_KB": 164531.3,
+      "global_mem_write_KB": 107873.3,
+      "shared_mem_total_KB": 122532.0,
+      "register_total_KB": 146812.0,
+      "tiled_serial_ms": 232.323,
+      "tiled_power": {
+        "avg_power_w": 14.06,
+        "peak_power_w": 14.16,
+        "min_power_w": 13.86,
+        "samples": 3,
+        "duration_s": 0.1586,
+        "energy_mj": 2230.27
+      },
+      "type_counts": {
+        "input": 1,
+        "matmul_tile": 1224,
+        "accumulate": 326,
+        "activation": 24,
+        "loss": 1,
+        "grad_loss": 1,
+        "grad_activation": 24,
+        "weight_update": 300
+      }
+    }
+  ]
+}

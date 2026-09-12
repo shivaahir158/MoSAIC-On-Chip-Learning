@@ -1,0 +1,105 @@
+{
+  "baseline_time_ms": 143.59343802789226,
+  "dag_total_tasks": 128,
+  "dag_total_work_us": 1079.2497609019279,
+  "dag_critical_path_us": 231.3297597527504,
+  "dag_critical_path_len": 12,
+  "dag_max_parallelism": 32,
+  "dag_avg_parallelism": 4.665416857975603,
+  "dag_total_memory_KB": 11697.75,
+  "task_type_counts": {
+    "input": 1,
+    "matmul_tile": 76,
+    "accumulate": 5,
+    "activation": 4,
+    "loss": 1,
+    "grad_loss": 1,
+    "grad_activation": 4,
+    "weight_update": 36
+  },
+  "task_type_times_us": {
+    "input": 0.1,
+    "matmul_tile": 693.0073630809784,
+    "accumulate": 114.63647991418839,
+    "activation": 18.892800211906433,
+    "loss": 10.219520330429077,
+    "grad_loss": 9.71776008605957,
+    "grad_activation": 74.94655817747116,
+    "weight_update": 157.72927910089493
+  },
+  "parallelism_groups": {
+    "L1_fwd_tiles": 32,
+    "L1_fwd_accum": 4,
+    "L1_relu": 4,
+    "L2_fwd_tiles": 4,
+    "L2_fwd_accum": 1,
+    "bwd_dW2_tiles": 4,
+    "bwd_dA1_tiles": 4,
+    "bwd_drelu": 4,
+    "bwd_dW1_tiles": 32,
+    "wu_W2": 4,
+    "wu_W1": 32
+  },
+  "scaling_results": [
+    {
+      "name": "Tiny (64x64)",
+      "MxN_KxN": "(64x64)@(64x64)",
+      "total_tiles": 1,
+      "full_tiles": 0,
+      "boundary_tiles": 1,
+      "tile_memory_KB": 48.0,
+      "tile_time_us": 8.524799942970276,
+      "max_parallel_output_blocks": 1,
+      "est_serial_us": 8.524799942970276,
+      "est_parallel_us": 8.524799942970276
+    },
+    {
+      "name": "Small (64x256)",
+      "MxN_KxN": "(64x256)@(256x256)",
+      "total_tiles": 4,
+      "full_tiles": 0,
+      "boundary_tiles": 4,
+      "tile_memory_KB": 512.0,
+      "tile_time_us": 9.052159786224365,
+      "max_parallel_output_blocks": 2,
+      "est_serial_us": 36.20863914489746,
+      "est_parallel_us": 18.10431957244873
+    },
+    {
+      "name": "Medium (64x512)",
+      "MxN_KxN": "(64x512)@(512x512)",
+      "total_tiles": 16,
+      "full_tiles": 0,
+      "boundary_tiles": 16,
+      "tile_memory_KB": 2048.0,
+      "tile_time_us": 9.13919985294342,
+      "max_parallel_output_blocks": 4,
+      "est_serial_us": 146.22719764709473,
+      "est_parallel_us": 36.55679941177368
+    },
+    {
+      "name": "Full Layer 1",
+      "MxN_KxN": "(64x1024)@(1024x512)",
+      "total_tiles": 32,
+      "full_tiles": 0,
+      "boundary_tiles": 32,
+      "tile_memory_KB": 4096.0,
+      "tile_time_us": 9.093120098114014,
+      "max_parallel_output_blocks": 4,
+      "est_serial_us": 290.97984313964844,
+      "est_parallel_us": 72.74496078491211
+    },
+    {
+      "name": "Full Layer 2",
+      "MxN_KxN": "(64x512)@(512x10)",
+      "total_tiles": 4,
+      "full_tiles": 0,
+      "boundary_tiles": 4,
+      "tile_memory_KB": 158.0,
+      "tile_time_us": 9.27232027053833,
+      "max_parallel_output_blocks": 1,
+      "est_serial_us": 37.08928108215332,
+      "est_parallel_us": 37.08928108215332
+    }
+  ]
+}
