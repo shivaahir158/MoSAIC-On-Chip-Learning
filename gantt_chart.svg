@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="320">
+<style>
+  text { font-family: Helvetica, Arial, sans-serif; }
+  .title { font-size: 12px; font-weight: bold; }
+  .label { font-size: 9px; }
+  .task { opacity: 0.85; }
+  .axis { font-size: 8px; fill: #666; }
+</style>
+<rect width="800" height="320" fill="white"/>
+<text x="400" y="15" text-anchor="middle" class="title">Layered DAG: HEFT vs MoSAIC Schedule Comparison</text>
+<text x="80" y="40" class="title">HEFT (makespan: 102.4)</text>
+<line x1="80.0" y1="50" x2="80.0" y2="110" stroke="#eee" stroke-width="0.5"/>
+<text x="80.0" y="122" text-anchor="middle" class="axis">0</text>
+<line x1="145.0970054507812" y1="50" x2="145.0970054507812" y2="110" stroke="#eee" stroke-width="0.5"/>
+<text x="145.0970054507812" y="122" text-anchor="middle" class="axis">10</text>
+<line x1="210.19401090156242" y1="50" x2="210.19401090156242" y2="110" stroke="#eee" stroke-width="0.5"/>
+<text x="210.19401090156242" y="122" text-anchor="middle" class="axis">20</text>
+<line x1="275.29101635234366" y1="50" x2="275.29101635234366" y2="110" stroke="#eee" stroke-width="0.5"/>
+<text x="275.29101635234366" y="122" text-anchor="middle" class="axis">30</text>
+<line x1="340.38802180312484" y1="50" x2="340.38802180312484" y2="110" stroke="#eee" stroke-width="0.5"/>
+<text x="340.38802180312484" y="122" text-anchor="middle" class="axis">40</text>
+<line x1="405.4850272539061" y1="50" x2="405.4850272539061" y2="110" stroke="#eee" stroke-width="0.5"/>
+<text x="405.4850272539061" y="122" text-anchor="middle" class="axis">50</text>
+<line x1="470.5820327046873" y1="50" x2="470.5820327046873" y2="110" stroke="#eee" stroke-width="0.5"/>
+<text x="470.5820327046873" y="122" text-anchor="middle" class="axis">60</text>
+<line x1="535.6790381554686" y1="50" x2="535.6790381554686" y2="110" stroke="#eee" stroke-width="0.5"/>
+<text x="535.6790381554686" y="122" text-anchor="middle" class="axis">70</text>
+<line x1="600.7760436062497" y1="50" x2="600.7760436062497" y2="110" stroke="#eee" stroke-width="0.5"/>
+<text x="600.7760436062497" y="122" text-anchor="middle" class="axis">80</text>
+<line x1="665.8730490570309" y1="50" x2="665.8730490570309" y2="110" stroke="#eee" stroke-width="0.5"/>
+<text x="665.8730490570309" y="122" text-anchor="middle" class="axis">90</text>
+<line x1="730.9700545078122" y1="50" x2="730.9700545078122" y2="110" stroke="#eee" stroke-width="0.5"/>
+<text x="730.9700545078122" y="122" text-anchor="middle" class="axis">100</text>
+<line x1="746.6666666666667" y1="50" x2="746.6666666666667" y2="110" stroke="red" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="75" y="68" text-anchor="end" class="label">P0</text>
+<rect x="80" y="50" width="700" height="30" fill="none" stroke="#ddd" stroke-width="0.5"/>
+<rect x="80.0" y="52" width="24.43835792888103" height="26" fill="#283593" class="task" rx="2"/>
+<text x="92.21917896444052" y="68" text-anchor="middle" fill="white" font-size="6">L0_t0</text>
+<rect x="104.43835792888103" y="52" width="64.12055358244675" height="26" fill="#283593" class="task" rx="2"/>
+<text x="136.4986347201044" y="68" text-anchor="middle" fill="white" font-size="6">L1_t7</text>
+<rect x="239.39779233606137" y="52" width="47.54386111952268" height="26" fill="#C62828" class="task" rx="2"/>
+<text x="263.1697228958227" y="68" text-anchor="middle" fill="white" font-size="6">L1_t1</text>
+<rect x="286.94165345558406" y="52" width="47.86359677151183" height="26" fill="#6A1B9A" class="task" rx="2"/>
+<text x="310.87345184134" y="68" text-anchor="middle" fill="white" font-size="6">L1_t6</text>
+<rect x="334.8052502270959" y="52" width="68.57296127201666" height="26" fill="#283593" class="task" rx="2"/>
+<text x="369.0917308631042" y="68" text-anchor="middle" fill="white" font-size="6">L1_t0</text>
+<rect x="403.3782114991126" y="52" width="59.87284788562017" height="26" fill="#E65100" class="task" rx="2"/>
+<text x="433.3146354419227" y="68" text-anchor="middle" fill="white" font-size="6">L2_t4</text>
+<rect x="463.25105938473274" y="52" width="8.833656893660338" height="26" fill="#E65100" class="task" rx="2"/>
+<rect x="472.08471627839305" y="52" width="6.509700545078122" height="26" fill="#558B2F" class="task" rx="2"/>
+<rect x="478.5944168234712" y="52" width="6.509700545078122" height="26" fill="#2E7D32" class="task" rx="2"/>
+<rect x="485.1041173685493" y="52" width="117.75235047084249" height="26" fill="#C62828" class="task" rx="2"/>
+<text x="543.9802926039705" y="68" text-anchor="middle" fill="white" font-size="6">L3_t3</text>
+<rect x="602.8564678393918" y="52" width="30.133892232934457" height="26" fill="#00695C" class="task" rx="2"/>
+<text x="617.923413955859" y="68" text-anchor="middle" fill="white" font-size="6">L3_t1</text>
+<rect x="632.9903600723262" y="52" width="14.362329097754644" height="26" fill="#00695C" class="task" rx="2"/>
+<rect x="647.3526891700809" y="52" width="11.732816930074007" height="26" fill="#E65100" class="task" rx="2"/>
+<rect x="661.564358195696" y="52" width="52.27746920390332" height="26" fill="#C62828" class="task" rx="2"/>
+<text x="687.7030927976476" y="68" text-anchor="middle" fill="white" font-size="6">L4_t1</text>
+<text x="75" y="98" text-anchor="end" class="label">P1</text>
+<rect x="80" y="80" width="700" height="30" fill="none" stroke="#ddd" stroke-width="0.5"/>
+<rect x="80.0" y="82" width="156.75991295676099" height="26" fill="#558B2F" class="task" rx="2"/>
+<text x="158.3799564783805" y="98" text-anchor="middle" fill="white" font-size="6">L0_t1</text>
+<rect x="236.75991295676099" y="82" width="104.74008523826403" height="26" fill="#1565C0" class="task" rx="2"/>
+<text x="289.129955575893" y="98" text-anchor="middle" fill="white" font-size="6">L1_t5</text>
+<rect x="341.499998195025" y="82" width="8.83216859135785" height="26" fill="#1565C0" class="task" rx="2"/>
+<rect x="350.33216678638286" y="82" width="93.26730670791852" height="26" fill="#2E7D32" class="task" rx="2"/>
+<text x="396.9658201403421" y="98" text-anchor="middle" fill="white" font-size="6">L2_t6</text>
+<rect x="443.5994734943014" y="82" width="49.03627070920935" height="26" fill="#558B2F" class="task" rx="2"/>
+<text x="468.11760884890606" y="98" text-anchor="middle" fill="white" font-size="6">L2_t5</text>
+<rect x="492.63574420351074" y="82" width="25.351923602525122" height="26" fill="#6A1B9A" class="task" rx="2"/>
+<text x="505.3117060047733" y="98" text-anchor="middle" fill="white" font-size="6">L2_t0</text>
+<rect x="517.9876678060359" y="82" width="9.915139278539165" height="26" fill="#C62828" class="task" rx="2"/>
+<rect x="527.902807084575" y="82" width="13.67173822840769" height="26" fill="#283593" class="task" rx="2"/>
+<rect x="541.5745453129828" y="82" width="43.143841435126525" height="26" fill="#1565C0" class="task" rx="2"/>
+<text x="563.146466030546" y="98" text-anchor="middle" fill="white" font-size="6">L3_t5</text>
+<rect x="584.7183867481092" y="82" width="33.59330717176305" height="26" fill="#1565C0" class="task" rx="2"/>
+<text x="601.5150403339907" y="98" text-anchor="middle" fill="white" font-size="6">L3_t4</text>
+<rect x="618.3116939198723" y="82" width="6.509700545078122" height="26" fill="#E65100" class="task" rx="2"/>
+<rect x="624.8213944649505" y="82" width="7.814026492621298" height="26" fill="#E65100" class="task" rx="2"/>
+<rect x="632.6354209575717" y="82" width="61.92740737339725" height="26" fill="#283593" class="task" rx="2"/>
+<text x="663.5991246442703" y="98" text-anchor="middle" fill="white" font-size="6">L3_t6</text>
+<rect x="694.562828330969" y="82" width="52.103838335697745" height="26" fill="#C62828" class="task" rx="2"/>
+<text x="720.6147474988178" y="98" text-anchor="middle" fill="white" font-size="6">L4_t0</text>
+<text x="80" y="190" class="title">MoSAIC (learned) (makespan: 99.7)</text>
+<line x1="80.0" y1="200" x2="80.0" y2="260" stroke="#eee" stroke-width="0.5"/>
+<text x="80.0" y="272" text-anchor="middle" class="axis">0</text>
+<line x1="145.0970054507812" y1="200" x2="145.0970054507812" y2="260" stroke="#eee" stroke-width="0.5"/>
+<text x="145.0970054507812" y="272" text-anchor="middle" class="axis">10</text>
+<line x1="210.19401090156242" y1="200" x2="210.19401090156242" y2="260" stroke="#eee" stroke-width="0.5"/>
+<text x="210.19401090156242" y="272" text-anchor="middle" class="axis">20</text>
+<line x1="275.29101635234366" y1="200" x2="275.29101635234366" y2="260" stroke="#eee" stroke-width="0.5"/>
+<text x="275.29101635234366" y="272" text-anchor="middle" class="axis">30</text>
+<line x1="340.38802180312484" y1="200" x2="340.38802180312484" y2="260" stroke="#eee" stroke-width="0.5"/>
+<text x="340.38802180312484" y="272" text-anchor="middle" class="axis">40</text>
+<line x1="405.4850272539061" y1="200" x2="405.4850272539061" y2="260" stroke="#eee" stroke-width="0.5"/>
+<text x="405.4850272539061" y="272" text-anchor="middle" class="axis">50</text>
+<line x1="470.5820327046873" y1="200" x2="470.5820327046873" y2="260" stroke="#eee" stroke-width="0.5"/>
+<text x="470.5820327046873" y="272" text-anchor="middle" class="axis">60</text>
+<line x1="535.6790381554686" y1="200" x2="535.6790381554686" y2="260" stroke="#eee" stroke-width="0.5"/>
+<text x="535.6790381554686" y="272" text-anchor="middle" class="axis">70</text>
+<line x1="600.7760436062497" y1="200" x2="600.7760436062497" y2="260" stroke="#eee" stroke-width="0.5"/>
+<text x="600.7760436062497" y="272" text-anchor="middle" class="axis">80</text>
+<line x1="665.8730490570309" y1="200" x2="665.8730490570309" y2="260" stroke="#eee" stroke-width="0.5"/>
+<text x="665.8730490570309" y="272" text-anchor="middle" class="axis">90</text>
+<line x1="730.9700545078122" y1="200" x2="730.9700545078122" y2="260" stroke="#eee" stroke-width="0.5"/>
+<text x="730.9700545078122" y="272" text-anchor="middle" class="axis">100</text>
+<line x1="729.1855679604662" y1="200" x2="729.1855679604662" y2="260" stroke="red" stroke-width="1.5" stroke-dasharray="4,2"/>
+<text x="75" y="218" text-anchor="end" class="label">P0</text>
+<rect x="80" y="200" width="700" height="30" fill="none" stroke="#ddd" stroke-width="0.5"/>
+<rect x="80.0" y="202" width="156.75991295676099" height="26" fill="#558B2F" class="task" rx="2"/>
+<text x="158.3799564783805" y="218" text-anchor="middle" fill="white" font-size="6">L0_t1</text>
+<rect x="236.75991295676099" y="202" width="104.74008523826403" height="26" fill="#1565C0" class="task" rx="2"/>
+<text x="289.129955575893" y="218" text-anchor="middle" fill="white" font-size="6">L1_t5</text>
+<rect x="341.499998195025" y="202" width="8.83216859135785" height="26" fill="#1565C0" class="task" rx="2"/>
+<rect x="350.33216678638286" y="202" width="93.26730670791852" height="26" fill="#2E7D32" class="task" rx="2"/>
+<text x="396.9658201403421" y="218" text-anchor="middle" fill="white" font-size="6">L2_t6</text>
+<rect x="443.5994734943014" y="202" width="8.833656893660338" height="26" fill="#E65100" class="task" rx="2"/>
+<rect x="452.43313038796174" y="202" width="6.509700545078122" height="26" fill="#558B2F" class="task" rx="2"/>
+<rect x="458.94283093303983" y="202" width="49.03627070920935" height="26" fill="#558B2F" class="task" rx="2"/>
+<text x="483.4609662876445" y="218" text-anchor="middle" fill="white" font-size="6">L2_t5</text>
+<rect x="507.9791016422492" y="202" width="9.915139278539165" height="26" fill="#C62828" class="task" rx="2"/>
+<rect x="517.8942409207884" y="202" width="13.67173822840769" height="26" fill="#283593" class="task" rx="2"/>
+<rect x="531.565979149196" y="202" width="6.509700545078122" height="26" fill="#2E7D32" class="task" rx="2"/>
+<rect x="538.0756796942742" y="202" width="43.143841435126525" height="26" fill="#1565C0" class="task" rx="2"/>
+<text x="559.6476004118374" y="218" text-anchor="middle" fill="white" font-size="6">L3_t5</text>
+<rect x="581.2195211294006" y="202" width="33.59330717176305" height="26" fill="#1565C0" class="task" rx="2"/>
+<text x="598.0161747152821" y="218" text-anchor="middle" fill="white" font-size="6">L3_t4</text>
+<rect x="614.8128283011638" y="202" width="61.92740737339725" height="26" fill="#283593" class="task" rx="2"/>
+<text x="645.7765319878624" y="218" text-anchor="middle" fill="white" font-size="6">L3_t6</text>
+<rect x="676.740235674561" y="202" width="52.103838335697745" height="26" fill="#C62828" class="task" rx="2"/>
+<text x="702.7921548424098" y="218" text-anchor="middle" fill="white" font-size="6">L4_t0</text>
+<text x="75" y="248" text-anchor="end" class="label">P1</text>
+<rect x="80" y="230" width="700" height="30" fill="none" stroke="#ddd" stroke-width="0.5"/>
+<rect x="80.0" y="232" width="24.43835792888103" height="26" fill="#283593" class="task" rx="2"/>
+<text x="92.21917896444052" y="248" text-anchor="middle" fill="white" font-size="6">L0_t0</text>
+<rect x="104.43835792888103" y="232" width="64.12055358244675" height="26" fill="#283593" class="task" rx="2"/>
+<text x="136.4986347201044" y="248" text-anchor="middle" fill="white" font-size="6">L1_t7</text>
+<rect x="239.39779233606137" y="232" width="47.54386111952268" height="26" fill="#C62828" class="task" rx="2"/>
+<text x="263.1697228958227" y="248" text-anchor="middle" fill="white" font-size="6">L1_t1</text>
+<rect x="286.94165345558406" y="232" width="47.86359677151183" height="26" fill="#6A1B9A" class="task" rx="2"/>
+<text x="310.87345184134" y="248" text-anchor="middle" fill="white" font-size="6">L1_t6</text>
+<rect x="334.8052502270959" y="232" width="68.57296127201666" height="26" fill="#283593" class="task" rx="2"/>
+<text x="369.0917308631042" y="248" text-anchor="middle" fill="white" font-size="6">L1_t0</text>
+<rect x="403.3782114991126" y="232" width="59.87284788562017" height="26" fill="#E65100" class="task" rx="2"/>
+<text x="433.3146354419227" y="248" text-anchor="middle" fill="white" font-size="6">L2_t4</text>
+<rect x="463.25105938473274" y="232" width="25.351923602525122" height="26" fill="#6A1B9A" class="task" rx="2"/>
+<text x="475.92702118599533" y="248" text-anchor="middle" fill="white" font-size="6">L2_t0</text>
+<rect x="488.60298298725786" y="232" width="117.75235047084249" height="26" fill="#C62828" class="task" rx="2"/>
+<text x="547.4791582226791" y="248" text-anchor="middle" fill="white" font-size="6">L3_t3</text>
+<rect x="606.3553334581003" y="232" width="30.133892232934457" height="26" fill="#00695C" class="task" rx="2"/>
+<text x="621.4222795745675" y="248" text-anchor="middle" fill="white" font-size="6">L3_t1</text>
+<rect x="636.4892256910348" y="232" width="7.814026492621298" height="26" fill="#E65100" class="task" rx="2"/>
+<rect x="644.3032521836561" y="232" width="6.509700545078122" height="26" fill="#E65100" class="task" rx="2"/>
+<rect x="650.8129527287342" y="232" width="52.27746920390332" height="26" fill="#C62828" class="task" rx="2"/>
+<text x="676.9516873306859" y="248" text-anchor="middle" fill="white" font-size="6">L4_t1</text>
+<rect x="703.0904219326376" y="232" width="14.362329097754644" height="26" fill="#00695C" class="task" rx="2"/>
+<rect x="717.4527510303922" y="232" width="11.732816930074007" height="26" fill="#E65100" class="task" rx="2"/>
+</svg>
