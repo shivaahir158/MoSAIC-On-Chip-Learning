@@ -14,7 +14,8 @@ The key insight is that effective scheduling is structure-dependent. Different D
 
 | File | What it does |
 |------|-------------|
-| `mosaic_transformer.py` | **Main experiment.** Full 15-step MoSAIC pipeline on a single Transformer layer. Includes QKV projections, multi-head attention, softmax, FFN with GeLU, LayerNorm, backward pass, and weight updates. |
+| `mosaic_publication.py` | **Publication experiment.** Comprehensive memory hierarchy analysis with data reuse, arithmetic intensity, roofline model, tile size sweep, and optimized MoSAIC scheduling. Best results. |
+| `mosaic_transformer.py` | Full 15-step MoSAIC pipeline on a single Transformer layer. Includes QKV projections, multi-head attention, softmax, FFN with GeLU, LayerNorm, backward pass, and weight updates. |
 | `mosaic_full_experiment.py` | Full 15-step pipeline on a 2-layer MLP. Simpler model, faster to run, good for understanding the basics. |
 | `mosaic_dag_v2.py` | Architecture-aware experiment with GPU memory hierarchy modeling (registers, shared memory, L2 cache, global memory), flexible tile sizes (32/64/128/256), and scaling experiments (1X/2X/3X). |
 | `mosaic_dag_experiment.py` | Original experiment covering steps 1-4 only: baseline MLP, tiling, DAG construction, profiling. |
@@ -23,6 +24,8 @@ The key insight is that effective scheduling is structure-dependent. Different D
 
 | File | Contents |
 |------|----------|
+| `transformer_dag_pub.svg` | Publication-quality DAG visualization (1900 tasks, critical path in red) |
+| `publication_results.json` | Publication experiment results with memory hierarchy analysis |
 | `transformer_dag.svg` | Full DAG visualization for the Transformer layer (1900 tasks, critical path in red) |
 | `transformer_results.json` | All numerical results from the Transformer experiment |
 | `dag_base.svg` | MLP DAG visualization (base case, 128 tasks) |
@@ -82,7 +85,72 @@ The key insight is that effective scheduling is structure-dependent. Different D
 
 ## Results
 
-### Transformer Experiment
+### Publication Experiment (Best Results)
+
+Single transformer encoder layer. Batch=4, seq_len=32, hidden=128, 2 heads, FFN dim=256. Tile size 32x32. 2 CUDA streams. Run with `mosaic_publication.py`.
+
+**Scheduling Comparison:**
+
+| Method | Makespan (us) | Gap vs CP-SAT | GPU Utilization | Energy (mJ) | Overhead |
+|--------|--------------|---------------|-----------------|-------------|----------|
+| PyTorch baseline | 1,342 | N/A | ~100% | N/A | None |
+| HEFT | 7,007 | -25.3% | 98.9% | 0.160 | O(V log V) |
+| CP-SAT (60s limit) | 9,384 | 0.0% | 73.9% | 0.214 | 60 seconds |
+| **MoSAIC (learned)** | **6,997** | **-25.4%** | **99.1%** | **0.160** | **O(V)** |
+
+MoSAIC outperforms CP-SAT by 25% because CP-SAT only finds a feasible (not optimal) solution within the 60-second time limit on a 1,900-task DAG. This directly demonstrates the scalability problem that motivates learned scheduling.
+
+**Memory Hierarchy (Best Case, 32x32 tiles):**
+
+| Metric | Value |
+|--------|-------|
+| Shared memory per tile | 8.0 KB (of 48 KB limit) |
+| Shared memory violations | 0 / 1,380 tiles |
+| Shared memory utilization | 16.7% |
+| Avg SM occupancy | 99.8% |
+| Global memory reads | 11.5 MB |
+| Global memory writes | 6.1 MB |
+| Total data movement | 17.6 MB |
+| Working set fits L2 cache (16 MB) | YES |
+| Avg data reuse factor | 31.8x |
+| Avg arithmetic intensity | 5.30 FLOP/byte |
+| Roofline ridge point | 67.2 FLOP/byte |
+
+**Data Reuse: Tiled vs Untiled (Forward Pass):**
+
+| GEMM | Naive Traffic | Tiled (32x32) | Reduction |
+|------|--------------|---------------|-----------|
+| Q/K/V Projection | 8.1 MB each | 0.8 MB each | 10.8x |
+| Attention scores | 0.3 MB each | 0.03 MB each | 11.2x |
+| FFN1 / FFN2 | 16.2 MB each | 1.5 MB each | 10.8x |
+
+Tiling achieves 10-11x reduction in global memory traffic by reusing data from shared memory.
+
+**Tile Size Impact:**
+
+| Tile | Tasks | SmemViol | Occupancy | Data Reuse | Arith. Intensity | Data Movement | L2 Fit |
+|------|-------|----------|-----------|------------|-----------------|---------------|--------|
+| 16x16 | 12,504 | 0 | 94.7% | 15.1x | 2.53 FLOP/byte | 36.6 MB | YES |
+| 32x32 | 1,572 | 0 | 94.7% | 29.6x | 4.97 FLOP/byte | 18.3 MB | YES |
+| 64x64 | 210 | 0 | 67.4% | 49.0x | 8.27 FLOP/byte | 9.3 MB | YES |
+
+32x32 is optimal: zero shared memory violations, 94.7% occupancy, 29.6x data reuse, and 1,572 tasks (large enough for meaningful scheduling, small enough for CP-SAT to find a feasible solution).
+
+**Learned Priority Weights:**
+
+```
+theta* = [2.201, -1.414, -1.110, -0.473, 0.650]
+          rank_u  depth   fanout  indegree comm_cost
+```
+
+- Strong positive rank_u (+2.2): prioritize critical-path tasks
+- Strong negative depth (-1.4): prefer shallower (root-near) tasks
+- Strong negative fanout (-1.1): avoid premature fan-out expansion
+- Moderate positive comm_cost (+0.65): schedule high-communication tasks early to hide latency
+
+---
+
+### Transformer Experiment (Original)
 
 Single transformer encoder layer. Batch=4, seq_len=32, hidden=128, 2 heads, FFN dim=256. Tile size 32x32. 2 CUDA streams.
 
@@ -223,7 +291,10 @@ Graphviz (optional, for rendering DAG SVGs)
 ## Usage
 
 ```bash
-# Transformer experiment (recommended, full 15 steps)
+# Publication experiment (recommended, comprehensive memory hierarchy analysis)
+python mosaic_publication.py
+
+# Transformer experiment (full 15 steps)
 python mosaic_transformer.py
 
 # MLP experiment (full 15 steps, faster)

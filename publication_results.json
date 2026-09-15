@@ -1,0 +1,199 @@
+{
+  "model": "Transformer",
+  "experiment": "publication",
+  "config": {
+    "batch": 4,
+    "seq_len": 32,
+    "hidden": 128,
+    "heads": 2,
+    "ffn_dim": 256,
+    "tile_size": 32,
+    "num_streams": 2
+  },
+  "gpu": {
+    "name": "NVIDIA RTX 500 Ada Generation Laptop GPU",
+    "sm_count": 16,
+    "shared_mem_per_block": 49152,
+    "shared_mem_per_sm": 102400,
+    "regs_per_sm": 65536,
+    "l2_cache_bytes": 16777216,
+    "global_mem_bytes": 3919642624,
+    "memory_bandwidth_gbps": 128.0,
+    "peak_flops_gflops": 8601.6
+  },
+  "baseline": {
+    "ms_mean": 1.3423195388168097,
+    "ms_std": 0.13898731405215006,
+    "loss": 0.23910269141197205,
+    "peak_mem_MB": 18.9609375,
+    "power": {
+      "avg_w": 12.21,
+      "peak_w": 12.42,
+      "energy_mj": 1467.04,
+      "duration_s": 0.12,
+      "samples": 4
+    }
+  },
+  "dag": {
+    "tasks": 1900,
+    "edges": 20821,
+    "depth": 41,
+    "total_work_us": 13864.884651696682,
+    "motif_vector": [
+      156,
+      154,
+      1165,
+      0
+    ],
+    "critical_path_us": 322.31721345186236
+  },
+  "memory_hierarchy": {
+    "tile_size": 32,
+    "shared_mem_per_tile_bytes": 8192,
+    "shared_mem_violations": 0,
+    "total_global_read_MB": 11.45465087890625,
+    "total_global_write_MB": 6.10345458984375,
+    "avg_data_reuse": 30.15518104818516,
+    "avg_arithmetic_intensity": 5.0282837482291045,
+    "avg_occupancy_pct": 99.83996342021035,
+    "roofline_ridge_point": 67.2
+  },
+  "tile_sweep": {
+    "16": {
+      "tile_size": 16,
+      "fwd_tiles": 4168,
+      "est_total_tasks": 12504,
+      "smem_violations": 0,
+      "avg_occupancy_pct": 94.7,
+      "avg_data_reuse": 15.1,
+      "avg_arithmetic_intensity": 2.53,
+      "ridge_point": 67.2,
+      "is_compute_bound": "False",
+      "total_global_read_MB": 24.4,
+      "total_global_write_MB": 12.19,
+      "total_data_movement_MB": 36.59,
+      "l2_working_set_KB": 31.0,
+      "l2_utilization_pct": 0.2,
+      "fits_l2": true,
+      "total_flops": 102266880
+    },
+    "32": {
+      "tile_size": 32,
+      "fwd_tiles": 524,
+      "est_total_tasks": 1572,
+      "smem_violations": 0,
+      "avg_occupancy_pct": 94.7,
+      "avg_data_reuse": 29.6,
+      "avg_arithmetic_intensity": 4.97,
+      "ridge_point": 67.2,
+      "is_compute_bound": "False",
+      "total_global_read_MB": 12.21,
+      "total_global_write_MB": 6.1,
+      "total_data_movement_MB": 18.3,
+      "l2_working_set_KB": 121.9,
+      "l2_utilization_pct": 0.7,
+      "fits_l2": true,
+      "total_flops": 102266880
+    },
+    "64": {
+      "tile_size": 64,
+      "fwd_tiles": 70,
+      "est_total_tasks": 210,
+      "smem_violations": 0,
+      "avg_occupancy_pct": 67.4,
+      "avg_data_reuse": 49.0,
+      "avg_arithmetic_intensity": 8.27,
+      "ridge_point": 67.2,
+      "is_compute_bound": "False",
+      "total_global_read_MB": 6.18,
+      "total_global_write_MB": 3.07,
+      "total_data_movement_MB": 9.26,
+      "l2_working_set_KB": 371.7,
+      "l2_utilization_pct": 2.3,
+      "fits_l2": true,
+      "total_flops": 102266880
+    }
+  },
+  "scheduling": {
+    "cpsat_makespan_us": 9384,
+    "cpsat_solve_time_s": 60.18590050700001,
+    "heft_makespan_us": 7007.457380151749,
+    "mosaic_makespan_us": 6997.463138973713,
+    "mosaic_gap_pct": -25.431978484934852,
+    "learned_theta": [
+      2.20127968753157,
+      -1.4137667752263297,
+      -1.109832394837651,
+      -0.47282568223028126,
+      0.649765951027892
+    ]
+  },
+  "power_w": 22.85,
+  "feedback": {
+    "normal_us": 6997.463138973713,
+    "throttled_us": 9914.370664215088,
+    "throttle_adapted_us": 9901.967268919945,
+    "throttle_adapted_theta": [
+      2.547888488360922,
+      -2.427605411061754,
+      -1.5528525183268396,
+      -0.6391153721552187,
+      1.0013360496459167
+    ],
+    "mem_pressure_us": 7065.035168683529,
+    "mem_adapted_us": 7050.015074050427,
+    "mem_adapted_theta": [
+      1.375158348854825,
+      -0.9302884525539213,
+      -0.8375201075879817,
+      -0.24810892425665015,
+      1.1102788708933886
+    ]
+  },
+  "generalization": [
+    {
+      "name": "Base",
+      "batch": 4,
+      "seq": 32,
+      "hidden": 128,
+      "heads": 2,
+      "ffn": 256,
+      "est_tasks": 1560,
+      "fwd_tiles": 520,
+      "cpsat_status": "Feasible only"
+    },
+    {
+      "name": "2X",
+      "batch": 8,
+      "seq": 64,
+      "hidden": 128,
+      "heads": 2,
+      "ffn": 256,
+      "est_tasks": 6240,
+      "fwd_tiles": 2080,
+      "cpsat_status": "Intractable"
+    },
+    {
+      "name": "Wide",
+      "batch": 4,
+      "seq": 32,
+      "hidden": 256,
+      "heads": 4,
+      "ffn": 512,
+      "est_tasks": 6192,
+      "fwd_tiles": 2064,
+      "cpsat_status": "Intractable"
+    },
+    {
+      "name": "Long",
+      "batch": 4,
+      "seq": 64,
+      "hidden": 128,
+      "heads": 2,
+      "ffn": 256,
+      "est_tasks": 3168,
+      "fwd_tiles": 1056,
+      "cpsat_status": "Intractable"
+    }
+  ]
+}
