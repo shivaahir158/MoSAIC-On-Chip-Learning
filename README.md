@@ -15,6 +15,7 @@ The key insight is that effective scheduling is structure-dependent. Different D
 | File | What it does |
 |------|-------------|
 | `mosaic_publication.py` | **Publication experiment.** Comprehensive memory hierarchy analysis with data reuse, arithmetic intensity, roofline model, tile size sweep, and optimized MoSAIC scheduling. Best results. |
+| `mosaic_saga_benchmark.py` | **SAGA benchmark comparison.** Compares MoSAIC against 15 scheduling algorithms from the SAGA library on 10 benchmark DAGs. See [Results](#saga-benchmark-comparison). |
 | `mosaic_transformer.py` | Full 15-step MoSAIC pipeline on a single Transformer layer. Includes QKV projections, multi-head attention, softmax, FFN with GeLU, LayerNorm, backward pass, and weight updates. |
 | `mosaic_full_experiment.py` | Full 15-step pipeline on a 2-layer MLP. Simpler model, faster to run, good for understanding the basics. |
 | `mosaic_dag_v2.py` | Architecture-aware experiment with GPU memory hierarchy modeling (registers, shared memory, L2 cache, global memory), flexible tile sizes (32/64/128/256), and scaling experiments (1X/2X/3X). |
@@ -31,6 +32,7 @@ The key insight is that effective scheduling is structure-dependent. Different D
 | `dag_base.svg` | MLP DAG visualization (base case, 128 tasks) |
 | `dag_1X.svg`, `dag_2X.svg` | MLP DAG at 1X and 2X scale with memory hierarchy annotations |
 | `mosaic_full_results.json` | MLP full pipeline results (444 tasks, CP-SAT/HEFT/MoSAIC comparison) |
+| `saga_benchmark_results.json` | SAGA benchmark comparison results (MoSAIC vs 15 algorithms, 10 DAGs) |
 | `dag_results_v2.json` | Architecture-aware results with tile size comparison and scaling data |
 | `RESULTS_SUMMARY.md` | Detailed writeup of all MLP experiment observations |
 | `TITLE_AND_ABSTRACT.md` | Revised paper title and abstract |
@@ -147,6 +149,54 @@ theta* = [2.201, -1.414, -1.110, -0.473, 0.650]
 - Strong negative depth (-1.4): prefer shallower (root-near) tasks
 - Strong negative fanout (-1.1): avoid premature fan-out expansion
 - Moderate positive comm_cost (+0.65): schedule high-communication tasks early to hide latency
+
+---
+
+### SAGA Benchmark Comparison
+
+Apples-to-apples comparison against 15 scheduling algorithms from the SAGA library ([Coleman & Krishnamachari, "Comparing Task Graph Scheduling Algorithms: An Adversarial Approach," ACM PODC, 2024](https://arxiv.org/abs/2403.07120)). Run with `mosaic_saga_benchmark.py`.
+
+Benchmarks: SAGA standard structures (in-trees, out-trees, parallel chains), random DAGs (Erdos-Renyi at 50/100/200 tasks), layered DAGs (6x10, 8x15, 10x20), and the 1,900-task Transformer training DAG. All on 2 homogeneous processors.
+
+**Overall Rankings (10 benchmarks, sorted by average gap to best):**
+
+| Rank | Algorithm | Avg Gap | Wins | Benchmarks |
+|------|-----------|---------|------|------------|
+| **1** | **MoSAIC** | **0.11%** | **7/10** | **10** |
+| 2 | HEFT | 0.23% | 2/10 | 10 |
+| 3 | CPOP | 1.43% | 1/10 | 10 |
+| 4 | PEFT | 1.48% | 0/10 | 10 |
+| 5 | MCT | 2.32% | 0/10 | 10 |
+| 6 | Sufferage | 2.51% | 0/10 | 10 |
+| 7 | OLB | 2.67% | 0/10 | 10 |
+| 8 | Duplex | 2.71% | 0/10 | 10 |
+| 9 | FLB | 2.91% | 0/10 | 10 |
+| 10 | MinMin | 3.03% | 0/10 | 10 |
+| 11 | BIL | 3.24% | 0/10 | 10 |
+| 12 | ETF | 3.47% | 0/10 | 10 |
+| 13 | MaxMin | 5.04% | 0/10 | 10 |
+| 14 | MET | 97.5% | 0/10 | 10 |
+| 15 | FastestNode | 97.5% | 0/10 | 10 |
+| 16 | GDL | 131.4% | 0/10 | 10 |
+
+MoSAIC ranks #1 overall with a 0.11% average gap to the best solution across all benchmarks, winning 7 out of 10 DAGs outright. The closest competitor (HEFT) averages 0.23% gap.
+
+**Per-Benchmark Makespan (top 5 + MoSAIC):**
+
+| Benchmark | MoSAIC | HEFT | CPOP | PEFT | MCT |
+|-----------|--------|------|------|------|-----|
+| InTree (365 tasks) | **187.6** | 188.3 | 188.5 | 188.4 | 188.3 |
+| OutTree (365 tasks) | **182.5** | 182.6 | 184.8 | 182.9 | 182.9 |
+| ParChains (82 tasks) | **42.5** | 42.7 | 44.5 | 43.3 | 43.5 |
+| ER-50 | **215.4** | 216.8 | 217.5 | 216.6 | 224.0 |
+| ER-100 | 464.0 | 463.9 | **463.7** | 466.3 | 477.8 |
+| ER-200 | 964.5 | **955.8** | 988.1 | 965.7 | 989.2 |
+| Layered-6x10 | **197.8** | 198.4 | 201.7 | 209.0 | 205.0 |
+| Layered-8x15 | **329.9** | 330.6 | 333.2 | 330.6 | 335.6 |
+| Layered-10x20 | **751.4** | 752.0 | 753.4 | 755.7 | 757.0 |
+| Transformer (1900 tasks) | 10,633 | **10,624** | 10,635 | 11,002 | 11,007 |
+
+MoSAIC wins on structured DAGs (trees, chains, layered) where motif-aware priority learning is most effective. On dense random graphs (ER-100, ER-200) and the large Transformer DAG, it matches or comes within 0.1-0.9% of HEFT.
 
 ---
 
@@ -281,9 +331,10 @@ The transformer DAG is qualitatively different. It has more diverse GEMM shapes 
 ## Requirements
 
 ```
-Python 3.8+
+Python 3.12+
 PyTorch with CUDA
 Google OR-Tools (pip install ortools)
+SAGA scheduling library (pip install anrg.saga)
 NumPy
 Graphviz (optional, for rendering DAG SVGs)
 ```
@@ -293,6 +344,9 @@ Graphviz (optional, for rendering DAG SVGs)
 ```bash
 # Publication experiment (recommended, comprehensive memory hierarchy analysis)
 python mosaic_publication.py
+
+# SAGA benchmark comparison (MoSAIC vs 15 algorithms on 10 DAGs)
+python mosaic_saga_benchmark.py
 
 # Transformer experiment (full 15 steps)
 python mosaic_transformer.py
@@ -336,3 +390,11 @@ The key extension beyond the paper is **architecture awareness**: our DAG nodes 
 4. **Adaptive tile sizing.** Instead of fixed tile sizes, let the scheduler choose tile dimensions per GEMM based on matrix shape and memory constraints.
 
 5. **Multi-layer and multi-GPU.** Extend from a single transformer layer to full model training across multiple GPUs, incorporating pipeline and tensor parallelism into the DAG.
+
+## References
+
+1. J. Coleman and B. Krishnamachari, "Comparing Task Graph Scheduling Algorithms: An Adversarial Approach," ACM Symposium on Principles of Distributed Computing (PODC), 2024. [arXiv:2403.07120](https://arxiv.org/abs/2403.07120) | [SAGA Library](https://github.com/ANRGUSC/saga)
+
+2. H. Topcuoglu, S. Hariri, and M. Wu, "Performance-Effective and Low-Complexity Task Scheduling for Heterogeneous Computing," IEEE Transactions on Parallel and Distributed Systems, 2002. (HEFT algorithm)
+
+3. Google OR-Tools CP-SAT Solver. [https://developers.google.com/optimization](https://developers.google.com/optimization)
