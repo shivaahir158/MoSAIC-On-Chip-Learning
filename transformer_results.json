@@ -1,0 +1,84 @@
+{
+  "model": "Transformer",
+  "config": {
+    "batch": 4,
+    "seq_len": 32,
+    "hidden": 128,
+    "heads": 2,
+    "ffn_dim": 256,
+    "tile_size": 32,
+    "num_streams": 2
+  },
+  "gpu": {
+    "name": "NVIDIA RTX 500 Ada Generation Laptop GPU",
+    "sm_count": 16,
+    "shared_mem_per_block": 49152,
+    "shared_mem_per_sm": 102400,
+    "regs_per_sm": 65536,
+    "l2_cache_bytes": 16777216,
+    "global_mem_bytes": 3919642624,
+    "warp_size": 32,
+    "max_threads_per_sm": 1536
+  },
+  "baseline_ms": 3.6176400491967797,
+  "baseline_loss": 1.8060190677642822,
+  "baseline_peak_mem_MB": 18.9609375,
+  "baseline_power": {
+    "avg_w": 10.51,
+    "peak_w": 10.51,
+    "energy_mj": 538.99,
+    "duration_s": 0.051,
+    "samples": 2
+  },
+  "dag_tasks": 1900,
+  "dag_edges": 20821,
+  "motif_vector": [
+    156,
+    154,
+    1165,
+    0
+  ],
+  "total_work_us": 15951.74930433035,
+  "cpsat_makespan_us": 10704,
+  "cpsat_solve_time_s": 60.16324145,
+  "heft_makespan_us": 8081.3386049032215,
+  "mosaic_makespan_us": 8064.492086029053,
+  "mosaic_gap_pct": -24.6590799137794,
+  "learned_theta": [
+    0.4330909708982518,
+    -1.221278246451377,
+    -0.22196959653428602,
+    0.9400742540881379,
+    0.9866695201052701
+  ],
+  "power_w": 11.73,
+  "feedback": {
+    "normal_us": 8064.492086029053,
+    "throttled_us": 11257.763189411164,
+    "throttle_adapted_us": 11249.62969121933,
+    "mem_pressure_us": 8129.549802339077,
+    "mem_adapted_us": 8120.170282638073
+  },
+  "generalization": [
+    {
+      "name": "Base",
+      "est_tasks": 1560,
+      "fwd_tiles": 520
+    },
+    {
+      "name": "2X",
+      "est_tasks": 6240,
+      "fwd_tiles": 2080
+    },
+    {
+      "name": "Wide",
+      "est_tasks": 6192,
+      "fwd_tiles": 2064
+    },
+    {
+      "name": "Long",
+      "est_tasks": 3168,
+      "fwd_tiles": 1056
+    }
+  ]
+}
