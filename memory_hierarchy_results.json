@@ -1,0 +1,942 @@
+{
+  "cache_locality": {
+    "data_sharing_pairs": 752,
+    "heft": {
+      "makespan": 2490.59,
+      "avg_time_gap_us": 148.66,
+      "avg_order_gap": 51.0,
+      "l2_hit_rate_pct": 100.0
+    },
+    "mosaic": {
+      "makespan": 2490.58,
+      "avg_time_gap_us": 41.18,
+      "avg_order_gap": 10.8,
+      "l2_hit_rate_pct": 100.0
+    }
+  },
+  "working_set": {
+    "heft": {
+      "peak_KB": 356.0,
+      "avg_KB": 219.8,
+      "fits_l2": true,
+      "timeline_samples": [
+        {
+          "time_us": 0.0,
+          "live_KB": 4.0
+        },
+        {
+          "time_us": 124.5,
+          "live_KB": 128.0
+        },
+        {
+          "time_us": 249.1,
+          "live_KB": 192.0
+        },
+        {
+          "time_us": 373.6,
+          "live_KB": 224.0
+        },
+        {
+          "time_us": 498.1,
+          "live_KB": 256.0
+        },
+        {
+          "time_us": 622.6,
+          "live_KB": 256.0
+        },
+        {
+          "time_us": 747.2,
+          "live_KB": 240.0
+        },
+        {
+          "time_us": 871.7,
+          "live_KB": 288.0
+        },
+        {
+          "time_us": 996.2,
+          "live_KB": 272.0
+        },
+        {
+          "time_us": 1120.8,
+          "live_KB": 256.0
+        },
+        {
+          "time_us": 1245.3,
+          "live_KB": 240.0
+        },
+        {
+          "time_us": 1369.8,
+          "live_KB": 224.0
+        },
+        {
+          "time_us": 1494.4,
+          "live_KB": 288.0
+        },
+        {
+          "time_us": 1618.9,
+          "live_KB": 336.0
+        },
+        {
+          "time_us": 1743.4,
+          "live_KB": 304.0
+        },
+        {
+          "time_us": 1867.9,
+          "live_KB": 264.0
+        },
+        {
+          "time_us": 1992.5,
+          "live_KB": 232.0
+        },
+        {
+          "time_us": 2117.0,
+          "live_KB": 264.0
+        },
+        {
+          "time_us": 2241.5,
+          "live_KB": 192.0
+        },
+        {
+          "time_us": 2366.1,
+          "live_KB": 96.0
+        },
+        {
+          "time_us": 2490.6,
+          "live_KB": 0.0
+        }
+      ]
+    },
+    "mosaic": {
+      "peak_KB": 264.0,
+      "avg_KB": 105.1,
+      "fits_l2": true,
+      "timeline_samples": [
+        {
+          "time_us": 0.0,
+          "live_KB": 4.0
+        },
+        {
+          "time_us": 124.5,
+          "live_KB": 256.0
+        },
+        {
+          "time_us": 249.1,
+          "live_KB": 256.0
+        },
+        {
+          "time_us": 373.6,
+          "live_KB": 224.0
+        },
+        {
+          "time_us": 498.1,
+          "live_KB": 192.0
+        },
+        {
+          "time_us": 622.6,
+          "live_KB": 160.0
+        },
+        {
+          "time_us": 747.2,
+          "live_KB": 96.0
+        },
+        {
+          "time_us": 871.7,
+          "live_KB": 96.0
+        },
+        {
+          "time_us": 996.2,
+          "live_KB": 96.0
+        },
+        {
+          "time_us": 1120.8,
+          "live_KB": 160.0
+        },
+        {
+          "time_us": 1245.3,
+          "live_KB": 96.0
+        },
+        {
+          "time_us": 1369.8,
+          "live_KB": 32.0
+        },
+        {
+          "time_us": 1494.3,
+          "live_KB": 64.0
+        },
+        {
+          "time_us": 1618.9,
+          "live_KB": 48.0
+        },
+        {
+          "time_us": 1743.4,
+          "live_KB": 32.0
+        },
+        {
+          "time_us": 1867.9,
+          "live_KB": 16.0
+        },
+        {
+          "time_us": 1992.5,
+          "live_KB": 96.0
+        },
+        {
+          "time_us": 2117.0,
+          "live_KB": 104.0
+        },
+        {
+          "time_us": 2241.5,
+          "live_KB": 72.0
+        },
+        {
+          "time_us": 2366.0,
+          "live_KB": 32.0
+        },
+        {
+          "time_us": 2490.6,
+          "live_KB": 0.0
+        }
+      ]
+    }
+  },
+  "register_pressure": {
+    "8": {
+      "threads": 64,
+      "regs_per_thread": 16,
+      "total_regs": 1024,
+      "blocks_per_sm": 24,
+      "occupancy_pct": 100.0,
+      "register_spills": false,
+      "shared_mem_bytes": 512,
+      "shared_mem_fits": true
+    },
+    "16": {
+      "threads": 256,
+      "regs_per_thread": 16,
+      "total_regs": 4096,
+      "blocks_per_sm": 6,
+      "occupancy_pct": 100.0,
+      "register_spills": false,
+      "shared_mem_bytes": 2048,
+      "shared_mem_fits": true
+    },
+    "32": {
+      "threads": 1024,
+      "regs_per_thread": 32,
+      "total_regs": 32768,
+      "blocks_per_sm": 1,
+      "occupancy_pct": 66.7,
+      "register_spills": false,
+      "shared_mem_bytes": 8192,
+      "shared_mem_fits": true
+    },
+    "64": {
+      "threads": 1024,
+      "regs_per_thread": 48,
+      "total_regs": 49152,
+      "blocks_per_sm": 1,
+      "occupancy_pct": 66.7,
+      "register_spills": false,
+      "shared_mem_bytes": 32768,
+      "shared_mem_fits": true
+    },
+    "128": {
+      "threads": 1024,
+      "regs_per_thread": 96,
+      "total_regs": 98304,
+      "blocks_per_sm": 1,
+      "occupancy_pct": 66.7,
+      "register_spills": true,
+      "shared_mem_bytes": 131072,
+      "shared_mem_fits": false
+    },
+    "optimal_tile": 8
+  },
+  "bandwidth": {
+    "peak_hw_bandwidth_gbps": 128.0,
+    "heft": {
+      "avg_utilization_pct": 34.9,
+      "peak_bandwidth_gbps": 256.0,
+      "idle_bins": 0,
+      "timeline": [
+        {
+          "time_us": 24.91,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 487420.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 74.72,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 124.53,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 174.34,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 224.15,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 224889.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 273.96,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 323.78,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 373.59,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 226030.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 423.4,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 473.21,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 322670.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 523.02,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 195336.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 572.83,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 622.65,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 192766.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 672.46,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 722.27,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 772.08,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 821.89,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 871.71,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 340601.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 921.52,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 971.33,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1021.14,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1070.95,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1120.76,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1170.58,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1220.39,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1270.2,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1320.01,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1369.82,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1419.63,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1469.45,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 438820.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 1519.26,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 376260.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 1569.07,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1618.88,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1668.69,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1718.5,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1768.32,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1818.13,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1867.94,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1917.75,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1967.56,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2017.38,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 291457.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 2067.19,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2117.0,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2166.81,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2216.62,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2266.43,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2316.25,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2366.06,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2415.87,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160643.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2465.68,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 469080.0,
+          "utilization_pct": 100
+        }
+      ]
+    },
+    "mosaic": {
+      "avg_utilization_pct": 29.9,
+      "peak_bandwidth_gbps": 256.0,
+      "idle_bins": 0,
+      "timeline": [
+        {
+          "time_us": 24.91,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 683640.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 74.72,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 124.53,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 174.34,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 224.15,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 273.96,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 323.77,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 373.59,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 423.4,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 473.21,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 523.02,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 572.83,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 622.64,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 672.46,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 722.27,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 772.08,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 821.89,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 871.7,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 353380.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 921.51,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 971.32,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1021.14,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1070.95,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1120.76,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 489838.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 1170.57,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1220.38,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1270.19,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1320.01,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1369.82,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 224888.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 1419.63,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1469.44,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 340600.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 1519.25,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1569.06,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1618.87,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1668.69,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1718.5,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1768.31,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1818.12,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1867.93,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1917.74,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 1967.56,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 404589.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 2017.37,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 245891.0,
+          "utilization_pct": 100
+        },
+        {
+          "time_us": 2067.18,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2116.99,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2166.8,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2216.61,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2266.42,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2316.24,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2366.05,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2415.86,
+          "bandwidth_gbps": 21.08,
+          "bytes_moved": 160642.0,
+          "utilization_pct": 16.5
+        },
+        {
+          "time_us": 2465.67,
+          "bandwidth_gbps": 256.0,
+          "bytes_moved": 340600.0,
+          "utilization_pct": 100
+        }
+      ]
+    }
+  },
+  "data_locality": {
+    "l2_cache_size_KB": 16384,
+    "heft": {
+      "hit_rate_pct": 100.0,
+      "avg_locality_pct": 73.3,
+      "by_op_type": {
+        "matmul": 70.4,
+        "softmax": 100.0,
+        "layernorm": 100.0,
+        "gelu": 100.0
+      }
+    },
+    "mosaic": {
+      "hit_rate_pct": 100.0,
+      "avg_locality_pct": 73.3,
+      "by_op_type": {
+        "matmul": 70.4,
+        "softmax": 100.0,
+        "layernorm": 100.0,
+        "gelu": 100.0
+      }
+    }
+  },
+  "memory_aware_theta": {
+    "heft_makespan": 2490.59,
+    "theta_5feat": [
+      -0.020878277428956996,
+      -1.4063707736091948,
+      0.18623315383273345,
+      -0.5639866396216391,
+      0.18446386911948337
+    ],
+    "makespan_5feat": 2490.58,
+    "theta_6feat": [
+      -0.0009967623125527736,
+      -1.4507590100266181,
+      0.061798290321966515,
+      -0.5497422109906329,
+      -0.4328044278795114,
+      -0.4150966274750859
+    ],
+    "makespan_6feat": 2490.58,
+    "improvement_pct": 0.0,
+    "l2_reuse_weight": -0.415,
+    "generalization": [
+      {
+        "config": "Small (b=2,s=16,h=64)",
+        "tasks": 76,
+        "heft": 142.5,
+        "ms_5feat": 141.9,
+        "ms_6feat": 141.9,
+        "gain_pct": -0.032
+      },
+      {
+        "config": "Base (b=4,s=32,h=128)",
+        "tasks": 960,
+        "heft": 2490.6,
+        "ms_5feat": 2490.6,
+        "ms_6feat": 2490.6,
+        "gain_pct": 0.0
+      },
+      {
+        "config": "Wide (b=4,s=32,h=256)",
+        "tasks": 3040,
+        "heft": 8883.3,
+        "ms_5feat": 8883.3,
+        "ms_6feat": 8883.3,
+        "gain_pct": 0.0
+      }
+    ]
+  }
+}
