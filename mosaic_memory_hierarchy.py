@@ -8,6 +8,7 @@ Publication-quality memory hierarchy analyses:
   4. Bandwidth utilization timeline: GB/s used over time during schedule
   5. Data locality metric: fraction of tile inputs already in L2 when scheduled
   6. Memory-aware theta: add L2 reuse feature to phi(v), re-learn theta
+  7. Multi-processor scaling: 2/4/8/16 processors with memory hierarchy metrics
 """
 
 import json
@@ -1080,6 +1081,156 @@ def run_memory_aware_theta(tasks, edges):
 
 
 # ============================================================
+# ANALYSIS 7: Multi-Processor Scaling (2, 4, 8, 16 processors)
+# ============================================================
+
+def run_multi_processor_scaling(tasks, edges):
+    """Scale across 2/4/8/16 processors — matching RTX 500 Ada's 16 SMs.
+
+    For each processor count:
+      - Learn MoSAIC theta, run HEFT
+      - Measure cache locality (order gap between data-sharing tiles)
+      - Measure working set (peak and average live memory)
+      - Report makespan and MoSAIC vs HEFT gap
+    """
+    print("\n" + "=" * 70)
+    print("ANALYSIS 7: Multi-Processor Scaling (2 / 4 / 8 / 16 processors)")
+    print("=" * 70)
+    print(f"  RTX 500 Ada has {GPU.sm_count} SMs — testing 2 to {GPU.sm_count} CUDA streams")
+
+    phi, successors, predecessors, edge_weight, topo = compute_features_standalone(tasks, edges)
+
+    # Build data-sharing graph (reused across all configs)
+    consumers = defaultdict(list)
+    for name, t in tasks.items():
+        for inp in t.input_tiles:
+            consumers[inp].append(name)
+
+    def measure_order_gap(schedule_order):
+        """Average schedule-order gap between data-sharing tile pairs."""
+        order_idx = {name: idx for idx, (name, *_) in enumerate(schedule_order)}
+        gaps = []
+        for source, consumer_list in consumers.items():
+            if len(consumer_list) < 2:
+                continue
+            sorted_c = sorted(consumer_list, key=lambda n: order_idx.get(n, 0))
+            for i in range(len(sorted_c) - 1):
+                a, b = sorted_c[i], sorted_c[i + 1]
+                if a in order_idx and b in order_idx:
+                    gaps.append(abs(order_idx[b] - order_idx[a]))
+        return np.mean(gaps) if gaps else 0
+
+    def measure_working_set(schedule_order, finish_times):
+        """Peak and average live bytes during schedule execution."""
+        last_consumer = defaultdict(float)
+        for name, proc, start, end in schedule_order:
+            for inp in tasks[name].input_tiles:
+                if inp in finish_times:
+                    last_consumer[inp] = max(last_consumer[inp], end)
+        for name in tasks:
+            if name not in last_consumer:
+                last_consumer[name] = finish_times.get(name, 0)
+
+        events = []
+        for name, proc, start, end in schedule_order:
+            out_bytes = tasks[name].output_bytes
+            events.append((end, +out_bytes))
+            events.append((last_consumer.get(name, end), -out_bytes))
+        events.sort(key=lambda e: (e[0], -e[1]))
+
+        live = 0
+        samples = []
+        for time, delta in events:
+            live = max(0, live + delta)
+            samples.append(live)
+        peak_kb = max(samples) / 1024 if samples else 0
+        avg_kb = np.mean(samples) / 1024 if samples else 0
+        return peak_kb, avg_kb
+
+    proc_counts = [2, 4, 8, 16]
+    results = {}
+
+    print(f"\n  {'Procs':>5} {'SMs/Proc':>8} {'HEFT ms':>10} {'MoSAIC ms':>10} {'Gap%':>8} "
+          f"{'HEFT OrdGap':>11} {'MoSAIC OrdGap':>13} {'Locality+':>10} "
+          f"{'HEFT AvgWS':>10} {'MoSAIC AvgWS':>12} {'WS Impr':>8}")
+    print(f"  {'-' * 121}")
+
+    for nprocs in proc_counts:
+        sms_per_proc = GPU.sm_count // nprocs
+
+        # HEFT with nprocs
+        heft_ms, heft_order, heft_finish, heft_proc = heft_schedule(tasks, edges, num_procs=nprocs)
+
+        # MoSAIC: learn theta for this processor count
+        theta, _ = learn_theta_standalone(tasks, edges, phi, heft_ms, num_procs=nprocs)
+        mosaic_ms, mosaic_order, mosaic_finish, mosaic_proc = list_schedule_standalone(
+            tasks, edges, phi, theta, num_procs=nprocs)
+
+        gap_pct = (mosaic_ms - heft_ms) / heft_ms * 100
+
+        # Cache locality
+        heft_og = measure_order_gap(heft_order)
+        mosaic_og = measure_order_gap(mosaic_order)
+        locality_impr = (1 - mosaic_og / max(0.001, heft_og)) * 100
+
+        # Working set
+        heft_peak, heft_avg = measure_working_set(heft_order, heft_finish)
+        mosaic_peak, mosaic_avg = measure_working_set(mosaic_order, mosaic_finish)
+        ws_impr = (1 - mosaic_avg / max(0.001, heft_avg)) * 100
+
+        print(f"  {nprocs:>5} {sms_per_proc:>8} {heft_ms:>10.1f} {mosaic_ms:>10.1f} {gap_pct:>+7.2f}% "
+              f"{heft_og:>11.1f} {mosaic_og:>13.1f} {locality_impr:>+9.1f}% "
+              f"{heft_avg:>9.1f}KB {mosaic_avg:>11.1f}KB {ws_impr:>+7.1f}%")
+
+        results[nprocs] = {
+            "sms_per_proc": sms_per_proc,
+            "heft_makespan": round(heft_ms, 2),
+            "mosaic_makespan": round(mosaic_ms, 2),
+            "mosaic_gap_pct": round(gap_pct, 2),
+            "theta": theta.tolist(),
+            "heft_avg_order_gap": round(heft_og, 1),
+            "mosaic_avg_order_gap": round(mosaic_og, 1),
+            "locality_improvement_pct": round(locality_impr, 1),
+            "heft_peak_ws_KB": round(heft_peak, 1),
+            "heft_avg_ws_KB": round(heft_avg, 1),
+            "mosaic_peak_ws_KB": round(mosaic_peak, 1),
+            "mosaic_avg_ws_KB": round(mosaic_avg, 1),
+            "ws_improvement_pct": round(ws_impr, 1),
+        }
+
+    # Summary
+    ms_2 = results[2]["mosaic_makespan"]
+    print(f"\n  Speedup relative to 2 processors:")
+    for nprocs in proc_counts:
+        speedup = ms_2 / results[nprocs]["mosaic_makespan"]
+        results[nprocs]["speedup_vs_2"] = round(speedup, 2)
+        print(f"    {nprocs:>2} procs: {speedup:.2f}x speedup")
+
+    # Theta evolution
+    print(f"\n  Learned theta per processor count:")
+    labels = ["rank_u", "depth", "fanout", "indegree", "comm_cost"]
+    print(f"    {'Procs':>5}  {' '.join(f'{l:>10}' for l in labels)}")
+    for nprocs in proc_counts:
+        t = results[nprocs]["theta"]
+        print(f"    {nprocs:>5}  {' '.join(f'{v:>10.3f}' for v in t)}")
+
+    print(f"\n  Key observations:")
+    # Check if locality advantage holds at high proc counts
+    loc_2 = results[2]["locality_improvement_pct"]
+    loc_16 = results[16]["locality_improvement_pct"]
+    if loc_16 > loc_2 * 0.5:
+        print(f"    - L2 locality advantage persists at 16 procs ({loc_16:+.1f}% vs {loc_2:+.1f}% at 2 procs)")
+    else:
+        print(f"    - L2 locality advantage diminishes at 16 procs ({loc_16:+.1f}% vs {loc_2:+.1f}% at 2 procs)")
+
+    # Check if MoSAIC beats HEFT at all scales
+    wins = sum(1 for n in proc_counts if results[n]["mosaic_gap_pct"] <= 0)
+    print(f"    - MoSAIC beats or matches HEFT at {wins}/{len(proc_counts)} processor counts")
+
+    return results
+
+
+# ============================================================
 # MAIN
 # ============================================================
 
@@ -1117,6 +1268,9 @@ def main():
 
     # 6. Memory-aware theta
     all_results["memory_aware_theta"] = run_memory_aware_theta(tasks, edges)
+
+    # 7. Multi-processor scaling
+    all_results["multi_processor_scaling"] = run_multi_processor_scaling(tasks, edges)
 
     # Save results
     out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "memory_hierarchy_results.json")
