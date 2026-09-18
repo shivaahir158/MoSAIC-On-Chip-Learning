@@ -1,0 +1,249 @@
+{
+  "benchmarks": {
+    "GEMM": {
+      "tasks": 63,
+      "edges": 90,
+      "cpsat": 162.01,
+      "cpsat_optimal": true,
+      "cpsat_solve_time": 0.1,
+      "heft": 162.77,
+      "bo_recovered": 162.17,
+      "cpop": 168.6,
+      "fds": 165.74,
+      "dls": 162.77,
+      "theta": [
+        0.8176193968336496,
+        1.3549512006404028,
+        0.2559046147405193,
+        -0.5537060134007218,
+        0.6637355632688435
+      ]
+    },
+    "SYRK": {
+      "tasks": 39,
+      "edges": 51,
+      "cpsat": 105.0,
+      "cpsat_optimal": true,
+      "cpsat_solve_time": 0.0,
+      "heft": 105.13,
+      "bo_recovered": 105.11,
+      "cpop": 106.7,
+      "fds": 105.75,
+      "dls": 105.13,
+      "theta": [
+        0.9894371583547974,
+        2.1745259739092453,
+        0.3984796244712068,
+        -1.2821535509386124,
+        0.4224048957032872
+      ]
+    },
+    "FFT": {
+      "tasks": 112,
+      "edges": 160,
+      "cpsat": 5.6,
+      "cpsat_optimal": true,
+      "cpsat_solve_time": 32.3,
+      "heft": 5.6,
+      "bo_recovered": 5.6,
+      "cpop": 6.2,
+      "fds": 5.6,
+      "dls": 5.6,
+      "theta": [
+        0.9268353856249245,
+        -0.46572975357025687,
+        0.24196227156603412,
+        -1.913280244657798,
+        -1.7249178325130328
+      ]
+    },
+    "AES": {
+      "tasks": 131,
+      "edges": 190,
+      "cpsat": 36.41,
+      "cpsat_optimal": false,
+      "cpsat_solve_time": 120.1,
+      "heft": 36.87,
+      "bo_recovered": 36.73,
+      "cpop": 39.06,
+      "fds": 39.27,
+      "dls": 36.87,
+      "theta": [
+        3.0922564940110298,
+        -0.04391194566088927,
+        0.30987440922945597,
+        -1.3970779472996695,
+        1.5600499695392696
+      ]
+    },
+    "ATAX": {
+      "tasks": 60,
+      "edges": 96,
+      "cpsat": 3.71,
+      "cpsat_optimal": true,
+      "cpsat_solve_time": 0.0,
+      "heft": 3.8,
+      "bo_recovered": 3.8,
+      "cpop": 4.38,
+      "fds": 3.86,
+      "dls": 3.8,
+      "theta": [
+        2.5787002822737963,
+        -0.9065686433589588,
+        0.33846562758447,
+        -1.0884972410658136,
+        -1.9325938076574827
+      ]
+    },
+    "BICG": {
+      "tasks": 64,
+      "edges": 96,
+      "cpsat": 3.89,
+      "cpsat_optimal": true,
+      "cpsat_solve_time": 0.0,
+      "heft": 4.0,
+      "bo_recovered": 3.98,
+      "cpop": 4.04,
+      "fds": 3.99,
+      "dls": 4.0,
+      "theta": [
+        2.3924769681211284,
+        1.390708695571102,
+        0.8366023672371293,
+        -0.14665059299707953,
+        0.10988627703823747
+      ]
+    },
+    "CONV2D": {
+      "tasks": 144,
+      "edges": 243,
+      "cpsat": 14.21,
+      "cpsat_optimal": true,
+      "cpsat_solve_time": 2.2,
+      "heft": 14.52,
+      "bo_recovered": 14.44,
+      "cpop": 14.63,
+      "fds": 14.47,
+      "dls": 14.51,
+      "theta": [
+        1.9612827860911253,
+        0.9770694875597687,
+        1.3653727758708922,
+        0.6241266942893932,
+        0.16977696088399574
+      ]
+    },
+    "STENCIL": {
+      "tasks": 64,
+      "edges": 192,
+      "cpsat": 6.29,
+      "cpsat_optimal": true,
+      "cpsat_solve_time": 0.1,
+      "heft": 6.41,
+      "bo_recovered": 6.41,
+      "cpop": 6.69,
+      "fds": 6.47,
+      "dls": 6.41,
+      "theta": [
+        2.5189085701182554,
+        -0.5247245201294591,
+        0.012488690859384727,
+        -0.1336095164527941,
+        -1.1809101203114403
+      ]
+    }
+  },
+  "transfer": {
+    "GEMM": {
+      "GEMM": -0.1,
+      "SYRK": 0.7,
+      "FFT": 5.4,
+      "AES": 5.2,
+      "ATAX": 9.5,
+      "BICG": 8.9,
+      "CONV2D": 0.6,
+      "STENCIL": 4.8
+    },
+    "SYRK": {
+      "GEMM": 0.2,
+      "SYRK": -0.2,
+      "FFT": 23.2,
+      "AES": 6.7,
+      "ATAX": 9.3,
+      "BICG": 0.0,
+      "CONV2D": 0.1,
+      "STENCIL": 4.4
+    },
+    "FFT": {
+      "GEMM": -0.2,
+      "SYRK": 3.0,
+      "FFT": 0.0,
+      "AES": 0.0,
+      "ATAX": 5.3,
+      "BICG": 0.0,
+      "CONV2D": 0.0,
+      "STENCIL": 1.8
+    },
+    "AES": {
+      "GEMM": 0.4,
+      "SYRK": -0.5,
+      "FFT": 0.0,
+      "AES": -0.5,
+      "ATAX": 0.0,
+      "BICG": 0.0,
+      "CONV2D": -0.0,
+      "STENCIL": 0.1
+    },
+    "ATAX": {
+      "GEMM": -0.1,
+      "SYRK": 0.7,
+      "FFT": 0.0,
+      "AES": -0.2,
+      "ATAX": 0.0,
+      "BICG": 0.0,
+      "CONV2D": -0.0,
+      "STENCIL": -0.2
+    },
+    "BICG": {
+      "GEMM": -0.0,
+      "SYRK": 0.0,
+      "FFT": 25.0,
+      "AES": 7.3,
+      "ATAX": 9.4,
+      "BICG": 0.0,
+      "CONV2D": -0.5,
+      "STENCIL": 6.0
+    },
+    "CONV2D": {
+      "GEMM": 0.1,
+      "SYRK": 0.3,
+      "FFT": 25.0,
+      "AES": 1.5,
+      "ATAX": 12.3,
+      "BICG": 0.0,
+      "CONV2D": -0.4,
+      "STENCIL": 5.5
+    },
+    "STENCIL": {
+      "GEMM": -0.0,
+      "SYRK": -0.1,
+      "FFT": 0.0,
+      "AES": 0.3,
+      "ATAX": 0.0,
+      "BICG": 0.0,
+      "CONV2D": -0.0,
+      "STENCIL": 0.3
+    }
+  },
+  "config": {
+    "num_procs": 2,
+    "max_nodes": 150,
+    "feature_vector": [
+      "rank_u",
+      "depth",
+      "fanout",
+      "indegree",
+      "comm_cost"
+    ]
+  }
+}
