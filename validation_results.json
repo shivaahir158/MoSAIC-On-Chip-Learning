@@ -1,0 +1,214 @@
+{
+  "gpu_profiling": {
+    "matmul": {
+      "16": {
+        "measured_us": 24.986,
+        "std_us": 2.755,
+        "estimated_us": 0.953,
+        "ratio": 26.23
+      },
+      "32": {
+        "measured_us": 29.368,
+        "std_us": 2.248,
+        "estimated_us": 7.62,
+        "ratio": 3.85
+      },
+      "64": {
+        "measured_us": 29.102,
+        "std_us": 1.763,
+        "estimated_us": 60.964,
+        "ratio": 0.48
+      }
+    },
+    "elementwise": {
+      "softmax": {
+        "measured_us": 20.152,
+        "std_us": 1.425,
+        "estimated_us": 1.191,
+        "ratio": 16.92
+      },
+      "gelu": {
+        "measured_us": 21.32,
+        "std_us": 4.201,
+        "estimated_us": 1.191,
+        "ratio": 17.91
+      },
+      "layernorm": {
+        "measured_us": 27.218,
+        "std_us": 3.821,
+        "estimated_us": 0.595,
+        "ratio": 45.72
+      },
+      "relu": {
+        "measured_us": 21.238,
+        "std_us": 1.386,
+        "estimated_us": 0.595,
+        "ratio": 35.67
+      },
+      "add": {
+        "measured_us": 20.378,
+        "std_us": 1.704,
+        "estimated_us": 0.595,
+        "ratio": 34.23
+      }
+    },
+    "transformer_pass": {
+      "forward_us": 549.6,
+      "forward_std": 52.4,
+      "fwd_bwd_us": 4173.0,
+      "fwd_bwd_std": 12105.4
+    },
+    "calibration": {
+      "matmul_ratio": 10.19,
+      "elementwise_ratio": 30.09
+    }
+  },
+  "deepsocs_comparison": {
+    "deepsocs_reported_improvement_pct": "7-9",
+    "mosaic_avg_improvement_pct": 0.16,
+    "mosaic_win_rate_vs_heft": "11/15",
+    "mosaic_params": 5,
+    "deepsocs_params": "10000+"
+  },
+  "multi_layer": {
+    "1": {
+      "tasks": 960,
+      "edges": 1664,
+      "heft_makespan": 2490.59,
+      "mosaic_makespan": 2490.58,
+      "gap_pct": -0.0,
+      "theta": [
+        -0.020878277428956996,
+        -1.4063707736091948,
+        0.18623315383273345,
+        -0.5639866396216391,
+        0.18446386911948337
+      ]
+    },
+    "2": {
+      "tasks": 1920,
+      "edges": 3344,
+      "heft_makespan": 4981.17,
+      "mosaic_makespan": 4981.15,
+      "gap_pct": -0.0,
+      "theta": [
+        0.2817724938224079,
+        -1.7684393655628516,
+        0.32316771418478146,
+        -0.14760258629866868,
+        -0.46603650186824225
+      ]
+    },
+    "3": {
+      "tasks": 2880,
+      "edges": 5024,
+      "heft_makespan": 7471.74,
+      "mosaic_makespan": 7471.73,
+      "gap_pct": -0.0,
+      "theta": [
+        2.882546578132231,
+        -1.4358621511794394,
+        1.1631637521549596,
+        0.010233061019587049,
+        -0.9815086510479509
+      ]
+    },
+    "3L_2P": {
+      "heft": 7471.74,
+      "mosaic": 7471.73,
+      "gap_pct": -0.0,
+      "speedup": 1.0
+    },
+    "3L_4P": {
+      "heft": 3736.0,
+      "mosaic": 3735.87,
+      "gap_pct": -0.0,
+      "speedup": 2.0
+    },
+    "3L_8P": {
+      "heft": 1867.98,
+      "mosaic": 1867.97,
+      "gap_pct": -0.0,
+      "speedup": 4.0
+    },
+    "3L_16P": {
+      "heft": 934.38,
+      "mosaic": 934.1,
+      "gap_pct": -0.03,
+      "speedup": 8.0
+    },
+    "transfer_1to3": {
+      "native_ms": 7471.73,
+      "transfer_ms": 7482.81,
+      "gap_pct": 0.15
+    }
+  },
+  "cpsat_optimality": {
+    "Small (b=1,s=8,h=32)": {
+      "tasks": 28,
+      "edges": 30,
+      "cpsat_makespan": 10.83,
+      "cpsat_optimal": true,
+      "cpsat_solve_time_s": 0.1,
+      "heft_makespan": 10.9,
+      "mosaic_makespan": 10.88,
+      "mosaic_gap_vs_cpsat_pct": 0.49
+    },
+    "Medium (b=2,s=16,h=64)": {
+      "tasks": 76,
+      "edges": 96,
+      "cpsat_makespan": 141.82,
+      "cpsat_optimal": true,
+      "cpsat_solve_time_s": 0.6,
+      "heft_makespan": 142.46,
+      "mosaic_makespan": 141.87,
+      "mosaic_gap_vs_cpsat_pct": 0.04
+    },
+    "Base (b=4,s=32,h=128)": {
+      "tasks": 960,
+      "edges": 1664,
+      "cpsat_makespan": 2490.32,
+      "cpsat_optimal": true,
+      "cpsat_solve_time_s": 22.6,
+      "heft_makespan": 2490.59,
+      "mosaic_makespan": 2490.58,
+      "mosaic_gap_vs_cpsat_pct": 0.01
+    },
+    "synth_Chain-20": {
+      "tasks": 20,
+      "cpsat": 102.3,
+      "optimal": true,
+      "heft": 102.39,
+      "mosaic": 102.39,
+      "mosaic_gap_pct": 0.08,
+      "heft_gap_pct": 0.08
+    },
+    "synth_Diamond-30": {
+      "tasks": 30,
+      "cpsat": 106.58,
+      "optimal": true,
+      "heft": 106.67,
+      "mosaic": 106.67,
+      "mosaic_gap_pct": 0.08,
+      "heft_gap_pct": 0.08
+    },
+    "synth_ForkJoin-40": {
+      "tasks": 40,
+      "cpsat": 155.1,
+      "optimal": true,
+      "heft": 155.49,
+      "mosaic": 155.49,
+      "mosaic_gap_pct": 0.25,
+      "heft_gap_pct": 0.25
+    },
+    "synth_Random-50": {
+      "tasks": 50,
+      "cpsat": 125.21,
+      "optimal": true,
+      "heft": 126.08,
+      "mosaic": 125.35,
+      "mosaic_gap_pct": 0.11,
+      "heft_gap_pct": 0.69
+    }
+  }
+}
